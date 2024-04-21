@@ -194,7 +194,7 @@ def github():
     for key in week_issue_closed_dict.keys():
         array = [str(key), week_issue_closed_dict[key]]
         week_closed_at_issues.append(array)
-
+ 
     '''
         1. Hit LSTM Microservice by passing issues_response as body
         2. LSTM Microservice will give a list of string containing image paths hosted on google cloud storage
