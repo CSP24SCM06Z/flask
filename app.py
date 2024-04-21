@@ -238,35 +238,24 @@ def github():
         1. GitHub repository data obtained from GitHub API
         2. Google cloud image urls of created and closed issues obtained from LSTM microservice
     '''
-    # json_response = {
-    #     "created": created_at_issues,
-    #     "closed": closed_at_issues,
-    #     "week_closed": week_closed_at_issues,
-    #     "open_issues": ["2024-04", repository["open_issues"]],
-    #     "starCount": ["2024-04", repository["stargazers_count"]],
-    #     "forkCount": ["2024-04", repository["forks_count"]],
-    #     "stack_creates": stack_creates,
-    #     "stack_closes": stack_closes,
-    #     "stack_keys": stack_keys,
-    #     "createdAtImageUrls": {
-    #         **created_at_response.json(),
-    #     },
-    #     "closedAtImageUrls": {
-    #         **closed_at_response.json(),
-    #     },
-    # }
     json_response = {
         "created": created_at_issues,
         "closed": closed_at_issues,
-        "starCount": repository["stargazers_count"],
-        "forkCount": repository["forks_count"],
-        "createdAtImageUrls": {
-            **created_at_response.json(),
-        },
-        "closedAtImageUrls": {
-            **closed_at_response.json(),
-        },
+        "week_closed": week_closed_at_issues,
+        "open_issues": ["2024-04", repository["open_issues"]],
+        "starCount": ["2024-04", repository["stargazers_count"]],
+        "forkCount": ["2024-04", repository["forks_count"]],
+        "stack_creates": stack_creates,
+        "stack_closes": stack_closes,
+        "stack_keys": stack_keys,
+        # "createdAtImageUrls": {
+        #     **created_at_response.json(),
+        # },
+        # "closedAtImageUrls": {
+        #     **closed_at_response.json(),
+        # },
     }
+
     # Return the response back to client (React app)
     return jsonify(json_response)
 
