@@ -13,7 +13,7 @@ Use Python/GitHub API to retrieve Issues/Repos information of the past 1 year fo
 - https: // github.com/angular/material
 - https: // github.com/angular/angular-cli
 - https: // github.com/d3/d3
-'''
+''' 
 # Import all the required packages 
 import os
 from flask import Flask, jsonify, request, make_response, Response
@@ -248,12 +248,12 @@ def github():
         "stack_creates": stack_creates,
         "stack_closes": stack_closes,
         "stack_keys": stack_keys,
-        # "createdAtImageUrls": {
-        #     **created_at_response.json(),
-        # },
-        # "closedAtImageUrls": {
-        #     **closed_at_response.json(),
-        # },
+        "createdAtImageUrls": {
+            **created_at_response.json(),
+        },
+        "closedAtImageUrls": {
+            **closed_at_response.json(),
+        },
     }
 
     # Return the response back to client (React app)
