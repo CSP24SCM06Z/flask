@@ -172,6 +172,23 @@ def github():
         closed_at_issues.append(array)
 
     '''
+    Weekly Closed Issues
+    Format the data by grouping the data by month
+    ''' 
+    
+    closed_at = df['closed_at'].dropna().sort_values(ascending=True)
+    month_issue_closed = pd.to_datetime(closed_at, format='%Y-%m-%d')
+    month_issue_closed.index = month_issue_closed.dt.to_period('W')
+    week_issue_closed = month_issue_closed.groupby(level=0).size()
+    week_issue_closed = week_issue_closed.reindex(pd.period_range(
+        week_issue_closed.index.min(), week_issue_closed.index.max(), freq='W'), fill_value=0)
+    week_issue_closed_dict = week_issue_closed.to_dict()
+    week_closed_at_issues = []
+    for key in week_issue_closed_dict.keys():
+        array = [str(key), week_issue_closed_dict[key]]
+        week_closed_at_issues.append(array)
+
+    '''
         1. Hit LSTM Microservice by passing issues_response as body
         2. LSTM Microservice will give a list of string containing image paths hosted on google cloud storage
         3. On recieving a valid response from LSTM Microservice, append the above json_response with the response from
@@ -217,6 +234,7 @@ def github():
     json_response = {
         "created": created_at_issues,
         "closed": closed_at_issues,
+        "week_closed": week_closed_at_issues,
         "starCount": repository["stargazers_count"],
         "forkCount": repository["forks_count"],
         "createdAtImageUrls": {
