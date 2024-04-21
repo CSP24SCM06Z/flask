@@ -248,12 +248,12 @@ def github():
         "stack_creates": stack_creates,
         "stack_closes": stack_closes,
         "stack_keys": stack_keys,
-        "createdAtImageUrls": {
-            **created_at_response.json(),
-        },
-        "closedAtImageUrls": {
-            **closed_at_response.json(),
-        },
+        # "createdAtImageUrls": {
+        #     **created_at_response.json(),
+        # },
+        # "closedAtImageUrls": {
+        #     **closed_at_response.json(),
+        # },
     }
 
     # Return the response back to client (React app)
