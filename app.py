@@ -170,6 +170,14 @@ def github():
     for key in month_issue_closed_dict.keys():
         array = [str(key), month_issue_closed_dict[key]]
         closed_at_issues.append(array)
+    
+    creates, closes, keys = [], [], []
+    for key in month_issue_closed_dict.keys():
+        creates.append(month_issue_created_dict[key])
+        closed.append(month_issue_closed_dict[key])
+        keys.append(str(key))
+    createAndClosedIssues = [creates, closes, keys]
+
 
     '''
     Weekly Closed Issues
@@ -235,8 +243,10 @@ def github():
         "created": created_at_issues,
         "closed": closed_at_issues,
         "week_closed": week_closed_at_issues,
-        "starCount": repository["stargazers_count"],
-        "forkCount": repository["forks_count"],
+        "open_issues": ["2024-04", repository["open_issues"]],
+        "starCount": ["2024-04", repository["stargazers_count"]],
+        "forkCount": ["2024-04", repository["forks_count"]],
+        "createAndClosedIssues": createAndClosedIssues,
         "createdAtImageUrls": {
             **created_at_response.json(),
         },
