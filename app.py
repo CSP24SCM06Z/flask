@@ -171,12 +171,11 @@ def github():
         array = [str(key), month_issue_closed_dict[key]]
         closed_at_issues.append(array)
     
-    creates, closes, keys = [], [], []
+    stack_creates, stack_closes, stack_keys = [], [], []
     for key in month_issue_closed_dict.keys():
-        creates.append(month_issue_created_dict[key])
-        closed.append(month_issue_closed_dict[key])
-        keys.append(str(key))
-    createAndClosedIssues = [creates, closes, keys]
+        stack_creates.append(month_issue_created_dict[key])
+        stack_closes.append(month_issue_closed_dict[key])
+        stack_keys.append(str(key))
 
 
     '''
@@ -246,7 +245,9 @@ def github():
         "open_issues": ["2024-04", repository["open_issues"]],
         "starCount": ["2024-04", repository["stargazers_count"]],
         "forkCount": ["2024-04", repository["forks_count"]],
-        "createAndClosedIssues": createAndClosedIssues,
+        "stack_creates": stack_creates,
+        "stack_closes": stack_closes,
+        "stack_keys": stack_keys,
         "createdAtImageUrls": {
             **created_at_response.json(),
         },
